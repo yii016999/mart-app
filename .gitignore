@@ -1,0 +1,29 @@
+# ========== Android Studio / IntelliJ ==========
+*.iml
+.gradle/
+.idea/
+.DS_Store
+
+# ========== Build Files ==========
+/build/
+/captures/
+/.externalNativeBuild/
+*.apk
+*.ap_
+
+# ========== Kotlin / Java ==========
+*.class
+*.jar
+*.war
+*.ear
+
+# ========== Logs / Reports ==========
+*.log
+
+# ========== OS / Tools ==========
+Thumbs.db
+ehthumbs.db
+*.swp
+
+# ========== GitHub Actions ==========
+.github/workflows/secrets.env
