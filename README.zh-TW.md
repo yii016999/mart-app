@@ -4,7 +4,7 @@
 Mart App 是一款使用 Kotlin 和 Supabase 所開發的 Android 電商應用程式。  
 本專案採用 MVVM 架構與 TDD 測試驅動開發流程，並整合 CI 機制以確保程式碼品質與穩定性。
 
-[![Android CI](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/actions/workflows/android-ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/actions)
+[![Android CI](https://github.com/yii016999/mart-app/actions/workflows/android-ci.yml/badge.svg)](https://github.com/yii016999/mart-app/actions)
 
 ## 功能特色
 - MVVM 架構與 Repository Pattern
