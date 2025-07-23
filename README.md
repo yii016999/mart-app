@@ -12,6 +12,7 @@ To enable pre-commit checks for static analysis with detekt, run the following c
 
 ```bash
 ./scripts/setup-hooks.sh
+```
 
 ## Features
 - MVVM architecture with Repository Pattern

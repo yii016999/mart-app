@@ -11,6 +11,7 @@ Mart App 是一款使用 Kotlin 和 Supabase 所開發的 Android 電商應用�
 
 ```bash
 ./scripts/setup-hooks.sh
+```
 
 ## 功能特色
 - MVVM 架構與 Repository Pattern
