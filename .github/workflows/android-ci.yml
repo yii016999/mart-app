@@ -1,6 +1,5 @@
 # Project: Android CI Workflow
 # name: mart-app CI Workflow
-
 # Settings for when to run the CI workflow
 on:
   push:
@@ -29,6 +28,9 @@ jobs:
 
       - name: ============== Run Lint + Unit Tests ==============
         run: ./gradlew lint testDebug
+
+      - name: ============== Run Detekt ==============
+        run: ./gradlew detekt
 
       - name: ============== Check CI Success ==============
         run: echo "Done, CI Finished"

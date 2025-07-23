@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.detekt)
     id("org.jetbrains.kotlin.kapt")
 }
 
@@ -24,7 +25,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -43,6 +44,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.13"
     }
+}
+
+// Configure Detekt for static code analysis
+detekt {
+    config.setFrom("$rootDir/detekt.yml")
+    buildUponDefaultConfig = true
 }
 
 dependencies {
@@ -79,4 +86,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     // navigation component for Compose
     implementation(libs.androidx.navigation.compose)
+    testImplementation(kotlin("test"))
 }
