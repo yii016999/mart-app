@@ -2,9 +2,16 @@
 
 # Mart App
 Mart App is an Android e-commerce application built with Kotlin and Supabase.  
-It follows the MVVM architecture and test-driven development (TDD) workflow, and integrates continuous integration (CI) for code quality and stability.
+It follows the MVVM architecture and test-driven development (TDD) workflow, and integrates
+continuous integration (CI) for code quality and stability.
 
 [![Android CI](https://github.com/yii016999/mart-app/actions/workflows/android-ci.yml/badge.svg)](https://github.com/yii016999/mart-app/actions)
+
+## Developer Setup
+To enable pre-commit checks for static analysis with detekt, run the following command **after cloning** the repository:
+
+```bash
+./scripts/setup-hooks.sh
 
 ## Features
 - MVVM architecture with Repository Pattern

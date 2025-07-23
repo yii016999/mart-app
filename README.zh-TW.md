@@ -6,6 +6,12 @@ Mart App 是一款使用 Kotlin 和 Supabase 所開發的 Android 電商應用�
 
 [![Android CI](https://github.com/yii016999/mart-app/actions/workflows/android-ci.yml/badge.svg)](https://github.com/yii016999/mart-app/actions)
 
+## 開發者設定
+在你 `clone` 專案後，請執行以下指令以啟用 pre-commit 檢查機制：
+
+```bash
+./scripts/setup-hooks.sh
+
 ## 功能特色
 - MVVM 架構與 Repository Pattern
 - 採用 Kotlin 與 Jetpack Compose
