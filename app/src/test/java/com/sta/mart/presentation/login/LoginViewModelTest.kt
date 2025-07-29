@@ -1,7 +1,7 @@
 package com.sta.mart.presentation.login
 
 import app.cash.turbine.test
-import com.sta.mart.domain.auth.FakeAuthRepository
+import com.sta.mart.data.fake.FakeAuthRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
