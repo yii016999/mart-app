@@ -1,7 +1,12 @@
-package com.sta.mart.presentation.login
+package com.sta.mart.login.presentation
 
 import app.cash.turbine.test
-import com.sta.mart.data.fake.FakeAuthRepository
+import com.sta.mart.TestConstants.TEST_EMAIL
+import com.sta.mart.TestConstants.TEST_PASSWORD
+import com.sta.mart.TestConstants.TEST_WRONG_EMAIL
+import com.sta.mart.TestConstants.TEST_WRONG_PASSWORD
+import com.sta.mart.login.data.FakeLoginRepository
+import com.sta.mart.login.domain.LoginUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -10,22 +15,15 @@ import kotlin.test.assertEquals
 @ExperimentalCoroutinesApi
 class LoginViewModelTest {
 
-    companion object {
-        private const val TEST_EMAIL = "user@example.com"
-        private const val TEST_PASSWORD = "example123"
-
-        private const val TEST_WRONG_EMAIL = "wrong@"
-        private const val TEST_WRONG_PASSWORD = "wrong123"
-    }
-
     private lateinit var viewModel: LoginViewModel
 
     @Test
     fun `initial state should be Idle`() = runTest {
         // Given
         // create an instance of LoginViewModel
-        val fakeRepo = FakeAuthRepository()
-        viewModel = LoginViewModel(authRepository = fakeRepo)
+        val fakeRepo = FakeLoginRepository()
+        val useCase = LoginUseCase(fakeRepo)
+        viewModel = LoginViewModel(useCase)
 
         // When & Then
         // assert that the initial state is Idle
@@ -36,8 +34,9 @@ class LoginViewModelTest {
     fun `press login should show loading`() = runTest {
         // Given
         // create an instance of LoginViewModel with a fake AuthRepository
-        val fakeRepo = FakeAuthRepository(shouldSucceed = true)
-        viewModel = LoginViewModel(authRepository = fakeRepo)
+        val fakeRepo = FakeLoginRepository(shouldSucceed = true)
+        val useCase = LoginUseCase(fakeRepo)
+        viewModel = LoginViewModel(useCase)
 
         // When & Then
         // collect the state flow and assert the states
@@ -55,8 +54,9 @@ class LoginViewModelTest {
     fun `login with right credentials should emit success state`() = runTest {
         // Given
         // create an instance of LoginViewModel with a fake AuthRepository
-        val fakeRepo = FakeAuthRepository(shouldSucceed = true)
-        viewModel = LoginViewModel(fakeRepo)
+        val fakeRepo = FakeLoginRepository(shouldSucceed = true)
+        val useCase = LoginUseCase(fakeRepo)
+        viewModel = LoginViewModel(useCase)
 
         // When + Then
         viewModel.state.test {
@@ -76,8 +76,9 @@ class LoginViewModelTest {
     fun `login with wrong credentials should emit Error state`() = runTest {
         // Given
         // create an instance of LoginViewModel with a fake AuthRepository that simulates a failure
-        val fakeRepo = FakeAuthRepository(shouldSucceed = false)
-        viewModel = LoginViewModel(fakeRepo)
+        val fakeRepo = FakeLoginRepository(shouldSucceed = false)
+        val useCase = LoginUseCase(fakeRepo)
+        viewModel = LoginViewModel(useCase)
 
         // When + Then
         viewModel.state.test {

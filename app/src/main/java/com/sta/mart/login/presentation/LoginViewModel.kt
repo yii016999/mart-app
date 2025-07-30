@@ -1,14 +1,15 @@
-package com.sta.mart.presentation.login
+package com.sta.mart.login.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sta.mart.data.fake.AuthRepository
+import com.sta.mart.login.domain.LoginRepository
+import com.sta.mart.login.domain.LoginUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
+class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
 
     // UI state management, using StateFlow for reactive updates
     private val _state = MutableStateFlow<LoginState>(LoginState.Idle)
@@ -32,7 +33,7 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
             _state.value = LoginState.Loading
             // Call the login method from the repository, which returns a Result type
             // Input email and password, and handle a Result
-            val result = authRepository.login(email, password)
+            val result = loginUseCase(email, password)
             // Update the state based on the result of the login operation
             _state.value = if (result.isSuccess) {
                 LoginState.Success

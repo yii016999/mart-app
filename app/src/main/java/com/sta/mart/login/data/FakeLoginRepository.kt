@@ -1,8 +1,8 @@
-package com.sta.mart.data.fake
+package com.sta.mart.login.data
 
-import com.sta.mart.domain.auth.AuthRepository
+import com.sta.mart.login.domain.LoginRepository
 
-class FakeAuthRepository(private val shouldSucceed: Boolean = true) : AuthRepository {
+class FakeLoginRepository(private val shouldSucceed: Boolean = true) : LoginRepository {
     override suspend fun login(email: String, password: String): Result<Unit> {
         return if (shouldSucceed) {
             Result.success(Unit)

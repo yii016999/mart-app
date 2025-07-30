@@ -1,5 +1,5 @@
-package com.sta.mart.domain.auth
+package com.sta.mart.login.domain
 
-interface AuthRepository {
+interface LoginRepository {
     suspend fun login(email: String, password: String): Result<Unit>
 }
