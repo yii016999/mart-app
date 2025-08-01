@@ -27,7 +27,7 @@ class LoginViewModelTest {
 
         // When & Then
         // assert that the initial state is Idle
-        assertEquals(LoginViewModel.LoginState.Idle, viewModel.state.value)
+        assertEquals(LoginState.Idle, viewModel.state.value)
     }
 
     @Test
@@ -47,7 +47,7 @@ class LoginViewModelTest {
             awaitItem()
 
             // First state => Loading
-            assertEquals(LoginViewModel.LoginState.Loading, awaitItem())
+            assertEquals(LoginState.Loading, awaitItem())
 
             // cancel the flow to stop collecting, this can avoid memory leaks
             cancelAndConsumeRemainingEvents()
@@ -70,9 +70,9 @@ class LoginViewModelTest {
             awaitItem()
 
             // First state => Loading
-            assertEquals(LoginViewModel.LoginState.Loading, awaitItem())
+            assertEquals(LoginState.Loading, awaitItem())
             // Second state => Success
-            assertEquals(LoginViewModel.LoginState.Success, awaitItem())
+            assertEquals(LoginState.Success, awaitItem())
 
             // cancel the flow to stop collecting, this can avoid memory leaks
             cancelAndConsumeRemainingEvents()
@@ -91,10 +91,13 @@ class LoginViewModelTest {
         viewModel.state.test {
             viewModel.login(TEST_WRONG_EMAIL, TEST_WRONG_PASSWORD)
 
+            // Initial state => Idle
+            awaitItem()
+
             // First state => Loading
-            assertEquals(LoginViewModel.LoginState.Loading, awaitItem())
+            assertEquals(LoginState.Loading, awaitItem())
             // Second state => Error
-            assertEquals(LoginViewModel.LoginState.Error("Login failed"), awaitItem())
+            assertEquals(LoginState.Error("Login failed"), awaitItem())
 
             cancelAndConsumeRemainingEvents()
         }

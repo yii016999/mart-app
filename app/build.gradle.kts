@@ -62,6 +62,7 @@ dependencies {
     // Compose libraries
     implementation(libs.androidx.activity.compose)
     // use bom for Compose to manage versions
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
