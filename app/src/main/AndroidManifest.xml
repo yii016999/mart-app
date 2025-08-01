@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mart">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Mart">
             <intent-filter>

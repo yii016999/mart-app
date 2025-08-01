@@ -42,6 +42,10 @@ class LoginViewModelTest {
         // collect the state flow and assert the states
         viewModel.state.test {
             viewModel.login(TEST_EMAIL, TEST_PASSWORD)
+
+            // Initial state => Idle
+            awaitItem()
+
             // First state => Loading
             assertEquals(LoginViewModel.LoginState.Loading, awaitItem())
 
@@ -61,6 +65,9 @@ class LoginViewModelTest {
         // When + Then
         viewModel.state.test {
             viewModel.login(TEST_EMAIL, TEST_PASSWORD)
+
+            // Initial state => Idle
+            awaitItem()
 
             // First state => Loading
             assertEquals(LoginViewModel.LoginState.Loading, awaitItem())

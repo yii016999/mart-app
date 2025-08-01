@@ -2,28 +2,27 @@ package com.sta.mart.login.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sta.mart.login.domain.LoginRepository
 import com.sta.mart.login.domain.LoginUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
+
+sealed class LoginState {
+    data object Idle : LoginState()
+    data object Loading : LoginState()
+    data object Success : LoginState()
+    data class Error(val message: String) : LoginState()
+}
+
+open class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
 
     // UI state management, using StateFlow for reactive updates
     private val _state = MutableStateFlow<LoginState>(LoginState.Idle)
 
     // Exposing the state as a read-only StateFlow
     val state: StateFlow<LoginState> = _state.asStateFlow()
-
-    sealed class LoginState {
-        data object Idle : LoginState()
-        data object Loading : LoginState()
-        data object Success : LoginState()
-        data class Error(val message: String) : LoginState()
-
-    }
 
     fun login(email: String, password: String) {
         // Kotlin coroutines for asynchronous operations
@@ -41,5 +40,10 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
                 LoginState.Error(result.exceptionOrNull()?.message ?: "Unknown error")
             }
         }
+    }
+
+    // Only for preview
+    fun setPreviewState(state: LoginState) {
+        _state.value = state
     }
 }
